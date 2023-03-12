@@ -22,9 +22,16 @@ M = 1024
 N = 20
 C = 3 # or 2 (which will be padded to 3d)
 
+# M points P
 p = torch.randn(M, C).cuda()
+
+# N lines/segments AB
 a = torch.randn(N, C).cuda()
 b = torch.randn(N, C).cuda()
 
+# distance between each point-segment pair
 d = point_seg_dist(p, a, b) # [M, N]
+
+# distance between each point-line pair
+d = point_seg_dist(p, a, b, seg=False) # [M, N]
 ```
